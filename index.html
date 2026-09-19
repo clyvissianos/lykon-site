@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Konstantinos Lyvissianos — Software Developer</title>
+<meta name="description" content="Electrical engineer and software developer building Android tools, Unity games, desktop automation, and full-stack web applications from Greece.">
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --void:#0A1020;--lapis:#0B1640;--hellenic:#1E3FA8;--ion:#4B6FE8;
+  --byzantine:#D4A843;--marble:#E8E4DC;--tyrian:#9B7FD4;--crt:#1D9E75;
+  --mono:'Share Tech Mono',monospace;--display:'Oxanium',sans-serif;
+  /* Elevated card bases — visible depth against void */
+  --card-a:#131C32;
+  --card-b:#131C32;
+  --card-c:#131C32;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--void);color:var(--marble);font-family:var(--display);
+  background-image:radial-gradient(circle,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:160px 160px;
+}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(8,14,28,.96);backdrop-filter:blur(14px);
+  border-bottom:.5px solid rgba(255,255,255,.08);
+  padding:13px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.nav-logo{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.15em;color:var(--marble);text-decoration:none;flex-shrink:0}
+.nav-logo .g{color:var(--byzantine)}
+.nav-links{display:flex;gap:20px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;color:rgba(202,207,216,.45);text-decoration:none;letter-spacing:.06em;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:rgba(232,228,220,.8)}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-gh{font-family:var(--mono);font-size:9.5px;padding:5px 12px;border-radius:6px;border:.5px solid rgba(255,255,255,.12);color:rgba(202,207,216,.5);text-decoration:none;transition:all .2s}
+.nav-gh:hover{border-color:rgba(75,111,232,.5);color:var(--ion)}
+.nav-cta{font-family:var(--mono);font-size:9.5px;font-weight:700;padding:6px 14px;border-radius:6px;background:var(--hellenic);color:var(--marble);text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--ion)}
+@media(max-width:700px){.nav-links,.nav-gh{display:none}}
+
+/* ── HERO ── */
+.hero{
+  padding:88px 28px 76px;text-align:center;
+  background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(11,22,64,.6) 0%,var(--void) 65%);
+  position:relative;overflow:hidden;
+}
+.hero::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:200px;height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,67,.28),transparent)}
+@keyframes goldPulse{0%,100%{filter:drop-shadow(0 0 6px rgba(212,168,67,.22))}50%{filter:drop-shadow(0 0 16px rgba(212,168,67,.55))}}
+.hero-mark{animation:goldPulse 3.5s ease-in-out infinite;margin-bottom:22px}
+.hero-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--byzantine);margin-bottom:16px;opacity:.85}
+.hero-name{font-size:clamp(26px,5vw,44px);font-weight:700;color:var(--marble);line-height:1.15;margin-bottom:10px}
+.hero-sub{font-size:14px;color:rgba(202,207,216,.58);line-height:1.85;max-width:500px;margin:0 auto 16px}
+.hero-tags{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;margin-bottom:30px}
+.hero-tag{font-family:var(--mono);font-size:9px;padding:4px 10px;border-radius:4px;border:.5px solid rgba(255,255,255,.12);color:rgba(202,207,216,.52);letter-spacing:.06em}
+.hero-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.btn-p{font-family:var(--mono);font-size:10.5px;font-weight:700;padding:10px 22px;border-radius:8px;background:var(--hellenic);color:var(--marble);text-decoration:none;letter-spacing:.08em;transition:all .2s}
+.btn-p:hover{background:var(--ion);transform:translateY(-2px)}
+.btn-g{font-family:var(--mono);font-size:10.5px;padding:10px 22px;border-radius:8px;border:.5px solid rgba(255,255,255,.12);color:rgba(202,207,216,.58);text-decoration:none;transition:all .2s}
+.btn-g:hover{border-color:rgba(255,255,255,.25);color:rgba(232,228,220,.85);transform:translateY(-2px)}
+
+/* ── SECTIONS ── */
+.sec{padding:56px 28px;max-width:900px;margin:0 auto}
+.sec-alt{background:#0C1428}  /* even sections get a subtle navy tint */
+.sec-eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:6px}
+.sec-title{font-size:clamp(18px,3vw,24px);font-weight:700;color:var(--marble);margin-bottom:28px}
+
+/* ── GRIDS ── */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+@media(max-width:700px){.grid-3,.grid-2{grid-template-columns:1fr}}
+@media(min-width:701px) and (max-width:900px){.grid-3{grid-template-columns:repeat(2,1fr)}}
+
+/* ── CARDS: elevated background, visible border ── */
+.card{
+  border-radius:13px;overflow:hidden;
+  border:1px solid #1A2845;
+  transition:transform .25s,box-shadow .25s;
+  display:flex;flex-direction:column;
+  background:var(--card-a);
+}
+.card:hover{transform:translateY(-4px)}
+.card-visual{padding:22px 22px 0;display:flex;justify-content:center;align-items:flex-end}
+.card-visual svg{filter:drop-shadow(0 8px 20px rgba(0,0,0,.6))}
+.card-body{padding:18px}
+.card-name{font-family:var(--display);font-size:14px;font-weight:700;color:#E8E4DC;margin-bottom:3px}
+.card-cat{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px}
+.card-desc{font-size:11.5px;color:rgba(202,207,216,.68);line-height:1.65;margin-bottom:11px}
+.card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.tag{font-family:var(--mono);font-size:7.5px;padding:2px 7px;border-radius:3px;background:rgba(255,255,255,.07);color:rgba(202,207,216,.52);letter-spacing:.04em}
+.badge{display:inline-block;font-family:var(--mono);font-size:8px;padding:2px 8px;border-radius:3px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.card-link{font-family:var(--mono);font-size:9px;text-decoration:none;letter-spacing:.06em;opacity:.7;transition:opacity .2s}
+.card-link:hover{opacity:1}
+
+/* ── PILLAR ACCENT: top-border only, thin ── */
+.accent-ion   { border-top:1.5px solid rgba(75,111,232,.6); }
+.accent-tyrian{ border-top:1.5px solid rgba(155,127,212,.6); }
+.accent-byz   { border-top:1.5px solid rgba(212,168,67,.6); }
+.accent-crt   { border-top:1.5px solid rgba(29,158,117,.6); }
+.accent-desk  { border-top:1.5px solid rgba(91,137,196,.55); }
+.accent-fs    { border-top:1.5px solid rgba(43,191,175,.55); }
+.accent-game  { border-top:1.5px solid rgba(232,146,58,.55); }
+
+.accent-ion:hover   { box-shadow:0 8px 30px rgba(75,111,232,.1); }
+.accent-tyrian:hover{ box-shadow:0 8px 30px rgba(155,127,212,.1); }
+.accent-byz:hover   { box-shadow:0 8px 30px rgba(212,168,67,.1); }
+.accent-desk:hover  { box-shadow:0 8px 30px rgba(91,137,196,.09); }
+.accent-fs:hover    { box-shadow:0 8px 30px rgba(43,191,175,.09); }
+
+/* ── GAME CARD ── */
+.game-full{
+  border-radius:14px;overflow:hidden;
+  background:var(--card-a);
+  border:1px solid #1A2845;
+  border-top:1.5px solid rgba(232,146,58,.55);
+  position:relative;max-width:900px;margin:0 auto;
+}
+.game-full::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(232,146,58,.05) 0%,transparent 60%);pointer-events:none}
+.game-inner{display:flex;align-items:center;gap:28px;padding:28px;flex-wrap:wrap;position:relative}
+.game-body{flex:1;min-width:220px}
+.game-name{font-family:var(--display);font-size:20px;font-weight:700;margin-bottom:5px}
+.game-cat{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.game-desc{font-size:12.5px;line-height:1.72;margin-bottom:14px}
+
+/* ── MEANDER ── */
+canvas.divider{width:100%;display:block;opacity:.55}
+
+/* ── CONTACT ── */
+.contact-sec{padding:64px 28px;text-align:center;border-top:.5px solid rgba(255,255,255,.07)}
+.contact-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+.cbtn{font-family:var(--mono);font-size:10px;font-weight:700;padding:11px 20px;border-radius:8px;text-decoration:none;letter-spacing:.08em;display:flex;align-items:center;gap:7px;transition:transform .2s,box-shadow .2s}
+.cbtn:hover{transform:translateY(-3px)}
+.cbtn-li{background:#0A66C2;color:#fff}.cbtn-li:hover{box-shadow:0 6px 20px rgba(10,102,194,.35)}
+.cbtn-gh{background:rgba(255,255,255,.07);color:rgba(232,228,220,.78);border:.5px solid rgba(255,255,255,.12)}.cbtn-gh:hover{box-shadow:0 6px 20px rgba(0,0,0,.3);color:var(--marble)}
+.cbtn-mail{background:rgba(75,111,232,.14);color:var(--ion);border:.5px solid rgba(75,111,232,.3)}.cbtn-mail:hover{box-shadow:0 6px 20px rgba(75,111,232,.18)}
+.cbtn-play{background:#01875f;color:#fff}.cbtn-play:hover{box-shadow:0 6px 20px rgba(1,135,95,.35)}
+
+/* ── FOOTER ── */
+footer{background:rgba(8,14,28,.9);border-top:.5px solid rgba(255,255,255,.07);padding:16px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.ft-brand{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.14em;color:rgba(232,228,220,.35)}
+.ft-brand .g{color:rgba(212,168,67,.65)}
+.ft-copy{font-family:var(--mono);font-size:9.5px;color:rgba(232,228,220,.3)}
+
+/* ── FADE ── */
+.fi{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+.fi.vis{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">LY<span class="g">KON</span></a>
+  <ul class="nav-links">
+    <li><a href="#mobile">Mobile</a></li>
+    <li><a href="#games">Games</a></li>
+    <li><a href="#desktop">Desktop</a></li>
+    <li><a href="#fullstack">Full-Stack</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://github.com/clyvissianos" class="nav-gh" target="_blank">GitHub ↗</a>
+    <a href="#contact" class="nav-cta">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-mark">
+    <svg width="62" height="62" viewBox="0 0 52 52" fill="none">
+      <rect width="52" height="52" rx="12" fill="#080E2A"/>
+      <line x1="11" y1="26" x2="41" y2="26" stroke="#4B6FE8" stroke-width="1.5"/>
+      <line x1="11" y1="20" x2="11" y2="32" stroke="#4B6FE8" stroke-width="1.5"/>
+      <line x1="41" y1="20" x2="41" y2="32" stroke="#4B6FE8" stroke-width="1.5"/>
+      <polyline points="20,20 26,14 32,20" fill="none" stroke="#D4A843" stroke-width="1.7" stroke-linejoin="round"/>
+      <polyline points="20,32 26,38 32,32" fill="none" stroke="#D4A843" stroke-width="1.7" stroke-linejoin="round"/>
+      <rect x="22" y="22" width="8" height="8" rx="1" fill="none" stroke="#E8E4DC" stroke-width="1.3"/>
+    </svg>
+  </div>
+  <div class="hero-eyebrow">Electrical Engineer · Software Developer</div>
+  <h1 class="hero-name">Konstantinos Lyvissianos</h1>
+  <p class="hero-sub">Building Android tools, desktop automation platforms, Unity games, and full-stack web applications. Precise software, real problems, one developer.</p>
+  <div class="hero-tags">
+    <span class="hero-tag">.NET / C#</span><span class="hero-tag">.NET MAUI</span>
+    <span class="hero-tag">Unity</span><span class="hero-tag">WinForms</span>
+    <span class="hero-tag">React</span><span class="hero-tag">ASP.NET Core</span>
+    <span class="hero-tag">SQL Server</span><span class="hero-tag">PostgreSQL</span>
+  </div>
+  <div class="hero-btns">
+    <a href="#mobile" class="btn-p">View work</a>
+    <a href="https://github.com/clyvissianos" class="btn-g" target="_blank">GitHub ↗</a>
+  </div>
+</section>
+
+<canvas id="m1" class="divider"></canvas>
+
+<!-- MOBILE -->
+<section class="sec" id="mobile">
+  <div class="sec-eyebrow" style="color:var(--ion);">01 — Mobile</div>
+  <div class="sec-title">Android applications</div>
+  <div class="grid-3">
+
+    <div class="card accent-ion fi">
+      <div class="card-visual">
+        <svg width="110" height="210" viewBox="0 0 110 210" fill="none">
+          <rect x="3" y="3" width="104" height="204" rx="15" fill="#0A0E1A" stroke="#4B6FE8" stroke-width="1" stroke-opacity=".4"/>
+          <rect x="9" y="18" width="92" height="170" rx="6" fill="#060810"/>
+          <circle cx="55" cy="10" r="3" fill="#040610"/>
+          <rect x="9" y="18" width="92" height="20" rx="6" fill="#0C1428"/>
+          <text x="55" y="32" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#4B6FE8" font-weight="bold" letter-spacing=".8">EE TOOLKIT</text>
+          <text x="55" y="108" text-anchor="middle" font-family="serif" font-size="52" fill="#4B6FE8" opacity=".8">Ω</text>
+          <rect x="16" y="135" width="78" height="5" rx="2" fill="#1E3FA8" opacity=".4"/>
+          <rect x="16" y="146" width="55" height="4" rx="2" fill="#1E3FA8" opacity=".25"/>
+          <rect x="16" y="156" width="68" height="4" rx="2" fill="#1E3FA8" opacity=".25"/>
+          <rect x="16" y="170" width="22" height="13" rx="3" fill="#1E3FA8" opacity=".5"/>
+          <rect x="43" y="170" width="22" height="13" rx="3" fill="#1E3FA8" opacity=".5"/>
+          <rect x="70" y="170" width="22" height="13" rx="3" fill="#1E3FA8" opacity=".5"/>
+          <rect x="40" y="200" width="28" height="2" rx="1" fill="#1E3FA8" opacity=".3"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-name">EE Toolkit</div>
+        <div class="card-cat" style="color:#4B6FE8;">Utility · Free + Pro</div>
+        <div class="card-desc">Electrical engineering calculators, AI resistor scanner, circuit plots, and reference tools for working engineers.</div>
+        <div class="card-tags"><span class="tag">.NET MAUI</span><span class="tag">MVVM</span><span class="tag">OxyPlot</span><span class="tag">AI</span></div>
+        <span class="badge" style="background:rgba(75,111,232,.12);color:#4B6FE8;">● Finished · Play Store</span>
+      </div>
+    </div>
+
+    <div class="card accent-tyrian fi">
+      <div class="card-visual">
+        <svg width="110" height="210" viewBox="0 0 110 210" fill="none">
+          <rect x="3" y="3" width="104" height="204" rx="15" fill="#0A080F" stroke="#9B7FD4" stroke-width="1" stroke-opacity=".4"/>
+          <rect x="9" y="18" width="92" height="170" rx="6" fill="#06040C"/>
+          <circle cx="55" cy="10" r="3" fill="#040310"/>
+          <rect x="9" y="18" width="92" height="20" rx="6" fill="#110820"/>
+          <text x="55" y="32" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#9B7FD4" font-weight="bold" letter-spacing=".8">MEDITRACK</text>
+          <text x="55" y="108" text-anchor="middle" font-family="serif" font-size="52" fill="#9B7FD4" opacity=".8">Φ</text>
+          <rect x="16" y="135" width="12" height="9" rx="2" fill="#9B7FD4" opacity=".25"/>
+          <rect x="32" y="135" width="12" height="9" rx="2" fill="#9B7FD4" opacity=".4"/>
+          <rect x="48" y="135" width="12" height="9" rx="2" fill="#9B7FD4" opacity=".25"/>
+          <rect x="64" y="135" width="12" height="9" rx="2" fill="#9B7FD4" opacity=".5"/>
+          <rect x="80" y="135" width="12" height="9" rx="2" fill="#9B7FD4" opacity=".25"/>
+          <rect x="16" y="152" width="46" height="7" rx="4" fill="#9B7FD4" opacity=".15"/>
+          <rect x="16" y="164" width="66" height="7" rx="4" fill="#9B7FD4" opacity=".15"/>
+          <rect x="16" y="176" width="54" height="7" rx="4" fill="#9B7FD4" opacity=".15"/>
+          <rect x="40" y="200" width="28" height="2" rx="1" fill="#9B7FD4" opacity=".25"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-name">MediTrack</div>
+        <div class="card-cat" style="color:#9B7FD4;">Health · Offline-first</div>
+        <div class="card-desc">Offline medication schedules, dose tracking, doctor contacts, notifications, and long-term history — no account required.</div>
+        <div class="card-tags"><span class="tag">.NET MAUI</span><span class="tag">SQLite</span><span class="tag">Notifications</span></div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span class="badge" style="background:rgba(155,127,212,.12);color:#9B7FD4;">● Finished · Public</span>
+          <a href="https://github.com/clyvissianos/MediTrack" class="card-link" style="color:#9B7FD4;" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card accent-byz fi">
+      <div class="card-visual">
+        <svg width="110" height="210" viewBox="0 0 110 210" fill="none">
+          <rect x="3" y="3" width="104" height="204" rx="15" fill="#0C0A07" stroke="#D4A843" stroke-width="1" stroke-opacity=".4"/>
+          <rect x="9" y="18" width="92" height="170" rx="6" fill="#080604"/>
+          <circle cx="55" cy="10" r="3" fill="#060402"/>
+          <rect x="9" y="18" width="92" height="20" rx="6" fill="#151008"/>
+          <text x="55" y="32" text-anchor="middle" font-family="monospace" font-size="7" fill="#D4A843" font-weight="bold" letter-spacing=".6">FOODDIARY</text>
+          <text x="55" y="108" text-anchor="middle" font-family="monospace" font-size="36" fill="#D4A843" opacity=".7">🍽</text>
+          <rect x="16" y="128" width="78" height="18" rx="5" fill="#1A1000" stroke="#D4A843" stroke-width=".6" stroke-opacity=".3"/>
+          <text x="55" y="141" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#D4A843" opacity=".5">🎤  Λέξε το φαγητό σου...</text>
+          <rect x="16" y="154" width="78" height="7" rx="2" fill="#D4A843" opacity=".1"/>
+          <rect x="16" y="166" width="78" height="7" rx="2" fill="#D4A843" opacity=".1"/>
+          <rect x="16" y="178" width="55" height="7" rx="2" fill="#D4A843" opacity=".1"/>
+          <rect x="40" y="200" width="28" height="2" rx="1" fill="#D4A843" opacity=".25"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-name">FoodDiary</div>
+        <div class="card-cat" style="color:#D4A843;">Greek · Voice input</div>
+        <div class="card-desc">Greek-language meal logging with on-device voice input, local food database, diet schedules, and weekly history.</div>
+        <div class="card-tags"><span class="tag">.NET MAUI</span><span class="tag">Whisper.net</span><span class="tag">SQLite</span></div>
+        <span class="badge" style="background:rgba(212,168,67,.1);color:#D4A843;">◐ In progress</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<canvas id="m2" class="divider"></canvas>
+
+<!-- GAMES -->
+<section class="sec sec-alt" id="games" style="padding-top:44px;max-width:100%;padding-left:0;padding-right:0;">
+  <div style="max-width:900px;margin:0 auto;padding:0 28px;">
+  <div class="sec-eyebrow" style="color:#E8923A;">02 — Games</div>
+  <div class="sec-title">Interactive systems</div>
+  <div class="game-full fi">
+    <div class="game-inner">
+      <div style="flex-shrink:0;">
+        <svg width="110" height="192" viewBox="0 0 110 192" fill="none">
+          <rect x="3" y="3" width="104" height="186" rx="15" fill="#0E0600" stroke="#E8923A" stroke-width="1" stroke-opacity=".4"/>
+          <rect x="9" y="18" width="92" height="152" rx="6" fill="#090300"/>
+          <circle cx="55" cy="11" r="3" fill="#060100"/>
+          <rect x="9" y="18" width="92" height="18" rx="6" fill="#180800"/>
+          <text x="55" y="31" text-anchor="middle" font-family="monospace" font-size="7" fill="#E8923A" font-weight="bold" letter-spacing=".8">IDLE EMPIRE</text>
+          <rect x="14" y="42" width="40" height="30" rx="4" fill="#180800" stroke="#E8923A" stroke-width=".6" stroke-opacity=".4"/>
+          <rect x="57" y="42" width="40" height="30" rx="4" fill="#180800" stroke="#E8923A" stroke-width=".6" stroke-opacity=".4"/>
+          <rect x="14" y="76" width="83" height="18" rx="4" fill="#180800" stroke="#E8923A" stroke-width=".6" stroke-opacity=".35"/>
+          <text x="34" y="61" text-anchor="middle" font-family="monospace" font-size="14" fill="#E8923A" opacity=".65">💼</text>
+          <text x="77" y="61" text-anchor="middle" font-family="monospace" font-size="14" fill="#E8923A" opacity=".65">📈</text>
+          <text x="55" y="89" text-anchor="middle" font-family="monospace" font-size="6" fill="#E8923A" opacity=".45">APPROVE?  [YES]  [NO]</text>
+          <rect x="14" y="100" width="18" height="22" rx="3" fill="#E8923A" opacity=".12"/>
+          <rect x="35" y="100" width="18" height="22" rx="3" fill="#E8923A" opacity=".18"/>
+          <rect x="56" y="100" width="18" height="22" rx="3" fill="#E8923A" opacity=".12"/>
+          <rect x="77" y="100" width="18" height="22" rx="3" fill="#E8923A" opacity=".22"/>
+          <rect x="14" y="130" width="83" height="5" rx="2" fill="#180800"/>
+          <rect x="14" y="130" width="52" height="5" rx="2" fill="#E8923A" opacity=".5"/>
+          <text x="14" y="150" font-family="monospace" font-size="5.5" fill="#E8923A" opacity=".4">REGRET POINTS: 2,847 · PRESTIGE: 3</text>
+          <rect x="36" y="183" width="36" height="2" rx="1" fill="#E8923A" opacity=".25"/>
+        </svg>
+      </div>
+      <div class="game-body">
+        <div class="game-name" style="color:#F0A865;">Idle Empire of Bad Decisions</div>
+        <div class="game-cat" style="color:#E8923A;">Idle / Satirical · Unity · Android</div>
+        <div class="game-desc" style="color:rgba(202,207,216,.65);">A portrait-oriented satirical idle game — the player approves increasingly questionable corporate decisions, manages generators and upgrades, and converts progress into prestige. Core loop, offline earnings, tutorial system, and save/load implemented.</div>
+        <div class="card-tags" style="margin-bottom:12px;">
+          <span class="tag">Unity 6</span><span class="tag">C#</span><span class="tag">URP</span><span class="tag">DOTween</span><span class="tag">TextMeshPro</span>
+        </div>
+        <span class="badge" style="background:rgba(232,146,58,.1);color:#E8923A;border:.5px solid rgba(232,146,58,.25);">◐ In progress · Playable build</span>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<canvas id="m3" class="divider"></canvas>
+
+<!-- DESKTOP -->
+<section class="sec" id="desktop">
+  <div class="sec-eyebrow" style="color:#5B89C4;">03 — Desktop</div>
+  <div class="sec-title">Automation &amp; data tooling</div>
+  <div class="grid-3">
+
+    <div class="card accent-desk fi">
+      <div class="card-visual">
+        <svg width="130" height="92" viewBox="0 0 130 92" fill="none">
+          <rect x="2" y="2" width="126" height="88" rx="8" fill="#08080E" stroke="#5B89C4" stroke-width=".8" stroke-opacity=".3"/>
+          <rect x="2" y="2" width="126" height="18" rx="8" fill="#0C1020"/>
+          <rect x="2" y="12" width="126" height="8" fill="#0C1020"/>
+          <circle cx="12" cy="10" r="3" fill="#FF5F57" opacity=".7"/>
+          <circle cx="22" cy="10" r="3" fill="#FFBD2E" opacity=".7"/>
+          <circle cx="32" cy="10" r="3" fill="#28C840" opacity=".7"/>
+          <text x="80" y="14" text-anchor="middle" font-family="monospace" font-size="6" fill="#5B89C4" opacity=".7">Excel Workflow Tool</text>
+          <rect x="8" y="25" width="114" height="6" rx="1" fill="#5B89C4" opacity=".25"/>
+          <rect x="8" y="34" width="80" height="4" rx="1" fill="#5B89C4" opacity=".14"/>
+          <rect x="8" y="41" width="100" height="4" rx="1" fill="#5B89C4" opacity=".14"/>
+          <rect x="8" y="48" width="65" height="4" rx="1" fill="#5B89C4" opacity=".14"/>
+          <rect x="8" y="55" width="88" height="4" rx="1" fill="#5B89C4" opacity=".14"/>
+          <rect x="8" y="67" width="36" height="12" rx="3" fill="#5B89C4" opacity=".5"/>
+          <rect x="49" y="67" width="36" height="12" rx="3" fill="#1D9E75" opacity=".4"/>
+          <rect x="2" y="77" width="126" height="13" rx="4" fill="#060810"/>
+          <text x="9" y="87" font-family="monospace" font-size="5" fill="#1D9E75" opacity=".5">✓ 1,240 records processed</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Excel Workflow Tool</div>
+        <div class="card-cat" style="color:#5B89C4;">Business automation</div>
+        <div class="card-desc">Replaces spreadsheet macros — multi-file Excel/CSV imports, rule validation, action mapping, and standardized output workbooks.</div>
+        <div class="card-tags"><span class="tag">.NET 8</span><span class="tag">WinForms</span><span class="tag">ClosedXML</span><span class="tag">Serilog</span></div>
+        <span class="badge" style="background:rgba(91,137,196,.12);color:#5B89C4;">● Finished · Production</span>
+      </div>
+    </div>
+
+    <div class="card accent-desk fi">
+      <div class="card-visual">
+        <svg width="130" height="92" viewBox="0 0 130 92" fill="none">
+          <rect x="2" y="2" width="126" height="88" rx="8" fill="#08080E" stroke="#5B89C4" stroke-width=".8" stroke-opacity=".3"/>
+          <rect x="2" y="2" width="126" height="18" rx="8" fill="#0C1020"/>
+          <rect x="2" y="12" width="126" height="8" fill="#0C1020"/>
+          <circle cx="12" cy="10" r="3" fill="#FF5F57" opacity=".7"/>
+          <circle cx="22" cy="10" r="3" fill="#FFBD2E" opacity=".7"/>
+          <circle cx="32" cy="10" r="3" fill="#28C840" opacity=".7"/>
+          <text x="80" y="14" text-anchor="middle" font-family="monospace" font-size="6" fill="#5B89C4" opacity=".7">Reconciliation Platform</text>
+          <rect x="8" y="24" width="24" height="18" rx="3" fill="#1E3FA8" opacity=".18"/>
+          <rect x="36" y="24" width="24" height="18" rx="3" fill="#D4A843" opacity=".18"/>
+          <rect x="64" y="24" width="24" height="18" rx="3" fill="#1D9E75" opacity=".18"/>
+          <rect x="92" y="24" width="24" height="18" rx="3" fill="#9B7FD4" opacity=".18"/>
+          <rect x="8" y="48" width="7" height="18" rx="1" fill="#5B89C4" opacity=".4"/>
+          <rect x="18" y="42" width="7" height="24" rx="1" fill="#5B89C4" opacity=".5"/>
+          <rect x="28" y="46" width="7" height="20" rx="1" fill="#5B89C4" opacity=".4"/>
+          <rect x="38" y="40" width="7" height="26" rx="1" fill="#5B89C4" opacity=".6"/>
+          <rect x="48" y="44" width="7" height="22" rx="1" fill="#5B89C4" opacity=".45"/>
+          <polyline points="70,60 80,54 90,56 100,48 110,50 120,46" fill="none" stroke="#D4A843" stroke-width="1.2" opacity=".55"/>
+          <rect x="2" y="77" width="126" height="13" rx="4" fill="#060810"/>
+          <text x="9" y="87" font-family="monospace" font-size="5" fill="#D4A843" opacity=".5">Target: 94.2% · Forecast: Day 18</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Reconciliation Platform</div>
+        <div class="card-cat" style="color:#5B89C4;">Payment · Forecasting</div>
+        <div class="card-desc">Reconciles payment files against account bases, applies business rules, calculates commissions, tracks targets, generates forecasts.</div>
+        <div class="card-tags"><span class="tag">.NET 8</span><span class="tag">WinForms</span><span class="tag">ClosedXML</span><span class="tag">JSON config</span></div>
+        <span class="badge" style="background:rgba(91,137,196,.12);color:#5B89C4;">◐ In progress · Operational</span>
+      </div>
+    </div>
+
+    <div class="card accent-desk fi">
+      <div class="card-visual">
+        <svg width="130" height="92" viewBox="0 0 130 92" fill="none">
+          <rect x="2" y="2" width="126" height="88" rx="8" fill="#08080E" stroke="#5B89C4" stroke-width=".8" stroke-opacity=".3"/>
+          <rect x="2" y="2" width="126" height="18" rx="8" fill="#0C1020"/>
+          <rect x="2" y="12" width="126" height="8" fill="#0C1020"/>
+          <circle cx="12" cy="10" r="3" fill="#FF5F57" opacity=".7"/>
+          <circle cx="22" cy="10" r="3" fill="#FFBD2E" opacity=".7"/>
+          <circle cx="32" cy="10" r="3" fill="#28C840" opacity=".7"/>
+          <text x="80" y="14" text-anchor="middle" font-family="monospace" font-size="6" fill="#5B89C4" opacity=".7">Excel Calculator Bridge</text>
+          <rect x="8" y="24" width="52" height="7" rx="2" fill="#060914" stroke="#5B89C4" stroke-width=".5" stroke-opacity=".4"/>
+          <text x="12" y="30" font-family="monospace" font-size="5" fill="#5B89C4" opacity=".45">Input A: 12,400</text>
+          <rect x="65" y="24" width="52" height="7" rx="2" fill="#060914" stroke="#5B89C4" stroke-width=".5" stroke-opacity=".4"/>
+          <text x="69" y="30" font-family="monospace" font-size="5" fill="#5B89C4" opacity=".45">Input B: 8.75%</text>
+          <rect x="8" y="35" width="52" height="7" rx="2" fill="#060914" stroke="#5B89C4" stroke-width=".5" stroke-opacity=".4"/>
+          <text x="12" y="41" font-family="monospace" font-size="5" fill="#5B89C4" opacity=".45">Type: Agricultural</text>
+          <rect x="46" y="50" width="36" height="11" rx="3" fill="#1E3FA8" opacity=".6"/>
+          <text x="64" y="59" text-anchor="middle" font-family="monospace" font-size="5.5" fill="#E8E4DC" opacity=".8">Calculate</text>
+          <rect x="8" y="67" width="114" height="13" rx="3" fill="#0C1020" stroke="#1D9E75" stroke-width=".7" stroke-opacity=".4"/>
+          <text x="13" y="77" font-family="monospace" font-size="5.5" fill="#1D9E75" opacity=".6">Result: €2,847.30 · Subsidy: €341.68</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Excel Calculator Bridge</div>
+        <div class="card-cat" style="color:#5B89C4;">Excel integration</div>
+        <div class="card-desc">Desktop front end that writes structured inputs to Excel worksheets, triggers COM recalculation, and returns formatted results to the UI.</div>
+        <div class="card-tags"><span class="tag">.NET 8</span><span class="tag">WinForms</span><span class="tag">COM Interop</span><span class="tag">ClosedXML</span></div>
+        <span class="badge" style="background:rgba(91,137,196,.12);color:#5B89C4;">● Finished</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<canvas id="m4" class="divider"></canvas>
+
+<!-- FULL STACK -->
+<section class="sec sec-alt" id="fullstack" style="max-width:100%;padding-left:0;padding-right:0;">
+  <div style="max-width:900px;margin:0 auto;padding:0 28px;">
+  <div class="sec-eyebrow" style="color:#2BBFAF;">04 — Full-Stack</div>
+  <div class="sec-title">APIs, data platforms &amp; web</div>
+  <div class="grid-3">
+
+    <div class="card accent-fs fi">
+      <div class="card-visual">
+        <svg width="130" height="92" viewBox="0 0 130 92" fill="none">
+          <rect x="2" y="2" width="126" height="88" rx="8" fill="#060C0B" stroke="#2BBFAF" stroke-width=".8" stroke-opacity=".3"/>
+          <rect x="2" y="2" width="126" height="18" rx="8" fill="#091818"/>
+          <rect x="2" y="12" width="126" height="8" fill="#091818"/>
+          <rect x="8" y="5" width="40" height="9" rx="2" fill="#0C2020"/>
+          <text x="28" y="12" text-anchor="middle" font-family="monospace" font-size="5.5" fill="#2BBFAF" opacity=".7">Analytics</text>
+          <rect x="26" y="22" width="80" height="7" rx="3" fill="#040A0A" stroke="#2BBFAF" stroke-width=".5" stroke-opacity=".25"/>
+          <text x="66" y="28" text-anchor="middle" font-family="monospace" font-size="4.5" fill="#2BBFAF" opacity=".35">localhost:5173/dashboard</text>
+          <rect x="8" y="34" width="22" height="14" rx="2" fill="#2BBFAF" opacity=".12"/>
+          <rect x="34" y="34" width="22" height="14" rx="2" fill="#D4A843" opacity=".12"/>
+          <rect x="60" y="34" width="22" height="14" rx="2" fill="#9B7FD4" opacity=".12"/>
+          <rect x="86" y="34" width="28" height="14" rx="2" fill="#4B6FE8" opacity=".12"/>
+          <rect x="8" y="54" width="6" height="22" rx="1" fill="#2BBFAF" opacity=".35"/>
+          <rect x="17" y="48" width="6" height="28" rx="1" fill="#2BBFAF" opacity=".45"/>
+          <rect x="26" y="52" width="6" height="24" rx="1" fill="#2BBFAF" opacity=".35"/>
+          <rect x="35" y="45" width="6" height="31" rx="1" fill="#2BBFAF" opacity=".55"/>
+          <rect x="44" y="50" width="6" height="26" rx="1" fill="#2BBFAF" opacity=".4"/>
+          <polyline points="66,70 76,64 86,66 96,58 106,60 118,56" fill="none" stroke="#D4A843" stroke-width="1.2" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Analytics Dashboard</div>
+        <div class="card-cat" style="color:#2BBFAF;">Full-stack · ETL · React</div>
+        <div class="card-desc">CSV/Excel ingestion, schema discovery, ETL pipeline, warehouse modeling, KPI analytics, and React dashboard with charts.</div>
+        <div class="card-tags"><span class="tag">ASP.NET 8</span><span class="tag">EF Core</span><span class="tag">SQL Server</span><span class="tag">React 19</span><span class="tag">Recharts</span></div>
+        <span class="badge" style="background:rgba(43,191,175,.1);color:#2BBFAF;">◐ In progress</span>
+      </div>
+    </div>
+
+    <div class="card accent-fs fi">
+      <div class="card-visual">
+        <svg width="130" height="92" viewBox="0 0 130 92" fill="none">
+          <rect x="2" y="2" width="126" height="88" rx="8" fill="#060C0B" stroke="#2BBFAF" stroke-width=".8" stroke-opacity=".3"/>
+          <rect x="2" y="2" width="126" height="18" rx="8" fill="#091818"/>
+          <rect x="2" y="12" width="126" height="8" fill="#091818"/>
+          <rect x="8" y="5" width="40" height="9" rx="2" fill="#0C2020"/>
+          <text x="28" y="12" text-anchor="middle" font-family="monospace" font-size="5.5" fill="#2BBFAF" opacity=".7">Diatages</text>
+          <rect x="26" y="22" width="80" height="7" rx="3" fill="#040A0A" stroke="#2BBFAF" stroke-width=".5" stroke-opacity=".25"/>
+          <text x="66" y="28" text-anchor="middle" font-family="monospace" font-size="4.5" fill="#2BBFAF" opacity=".35">localhost:5173/cases</text>
+          <rect x="8" y="34" width="114" height="10" rx="2" fill="#2BBFAF" opacity=".08"/>
+          <rect x="8" y="34" width="3" height="10" rx="1" fill="#D4A843" opacity=".6"/>
+          <rect x="8" y="47" width="114" height="10" rx="2" fill="#2BBFAF" opacity=".06"/>
+          <rect x="8" y="47" width="3" height="10" rx="1" fill="#4B6FE8" opacity=".6"/>
+          <rect x="8" y="60" width="114" height="10" rx="2" fill="#2BBFAF" opacity=".08"/>
+          <rect x="8" y="60" width="3" height="10" rx="1" fill="#1D9E75" opacity=".6"/>
+          <rect x="98" y="36" width="20" height="6" rx="2" fill="#D4A843" opacity=".18"/>
+          <rect x="98" y="49" width="20" height="6" rx="2" fill="#4B6FE8" opacity=".18"/>
+          <rect x="98" y="62" width="20" height="6" rx="2" fill="#1D9E75" opacity=".18"/>
+          <text x="9" y="84" font-family="monospace" font-size="4.5" fill="#2BBFAF" opacity=".35">Hangfire · 3 reminders dispatched</text>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Diatages Reminder</div>
+        <div class="card-cat" style="color:#2BBFAF;">Legal · Background jobs</div>
+        <div class="card-desc">Legal case platform with deadline tracking, automated reminder pipeline, audit history, security boundary, and E2E test coverage.</div>
+        <div class="card-tags"><span class="tag">.NET 8 API</span><span class="tag">PostgreSQL</span><span class="tag">Hangfire</span><span class="tag">React 19</span><span class="tag">Playwright</span></div>
+        <span class="badge" style="background:rgba(43,191,175,.1);color:#2BBFAF;">● Finished · Architecture showcase</span>
+      </div>
+    </div>
+
+    <div class="card accent-fs fi">
+      <div class="card-visual">
+        <svg width="130" height="92" viewBox="0 0 130 92" fill="none">
+          <rect x="2" y="2" width="126" height="88" rx="8" fill="#060C0B" stroke="#2BBFAF" stroke-width=".8" stroke-opacity=".3"/>
+          <rect x="2" y="2" width="126" height="18" rx="8" fill="#091818"/>
+          <rect x="2" y="12" width="126" height="8" fill="#091818"/>
+          <rect x="8" y="5" width="40" height="9" rx="2" fill="#0C2020"/>
+          <text x="28" y="12" text-anchor="middle" font-family="monospace" font-size="5.5" fill="#2BBFAF" opacity=".7">Kanban</text>
+          <rect x="26" y="22" width="80" height="7" rx="3" fill="#040A0A" stroke="#2BBFAF" stroke-width=".5" stroke-opacity=".25"/>
+          <text x="66" y="28" text-anchor="middle" font-family="monospace" font-size="4.5" fill="#2BBFAF" opacity=".35">localhost:5173/board</text>
+          <rect x="8" y="34" width="30" height="48" rx="3" fill="#2BBFAF" opacity=".05" stroke="#2BBFAF" stroke-width=".5" stroke-opacity=".18"/>
+          <rect x="42" y="34" width="30" height="48" rx="3" fill="#2BBFAF" opacity=".05" stroke="#2BBFAF" stroke-width=".5" stroke-opacity=".18"/>
+          <rect x="76" y="34" width="30" height="48" rx="3" fill="#2BBFAF" opacity=".05" stroke="#2BBFAF" stroke-width=".5" stroke-opacity=".18"/>
+          <text x="23" y="38" text-anchor="middle" font-family="monospace" font-size="4" fill="#2BBFAF" opacity=".35">To Do</text>
+          <text x="57" y="38" text-anchor="middle" font-family="monospace" font-size="4" fill="#2BBFAF" opacity=".35">Doing</text>
+          <text x="91" y="38" text-anchor="middle" font-family="monospace" font-size="4" fill="#2BBFAF" opacity=".35">Done</text>
+          <rect x="11" y="40" width="24" height="11" rx="2" fill="#4B6FE8" opacity=".25"/>
+          <rect x="11" y="54" width="24" height="11" rx="2" fill="#4B6FE8" opacity=".18"/>
+          <rect x="45" y="40" width="24" height="11" rx="2" fill="#D4A843" opacity=".25"/>
+          <rect x="79" y="40" width="24" height="11" rx="2" fill="#1D9E75" opacity=".25"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Kanban Board</div>
+        <div class="card-cat" style="color:#2BBFAF;">Full-stack · Public</div>
+        <div class="card-desc">Boards, columns, cards, drag-and-drop reordering, and Swagger-documented REST API. Clean API-to-React integration example.</div>
+        <div class="card-tags"><span class="tag">.NET 8 API</span><span class="tag">EF Core</span><span class="tag">SQL Server</span><span class="tag">React 19</span><span class="tag">TypeScript</span></div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span class="badge" style="background:rgba(43,191,175,.1);color:#2BBFAF;">● Finished · Public</span>
+          <a href="https://github.com/clyvissianos/Kanban-Board-App_Full-Stack" class="card-link" style="color:#2BBFAF;" target="_blank">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</section>
+
+<canvas id="m5" class="divider"></canvas>
+
+<!-- CONTACT -->
+<section class="contact-sec" id="contact">
+  <div class="sec-eyebrow" style="color:var(--byzantine);margin-bottom:8px;">05 — Contact</div>
+  <div class="sec-title" style="margin-bottom:8px;">Let's connect</div>
+  <p style="font-size:13px;color:rgba(202,207,216,.58);max-width:400px;margin:0 auto;line-height:1.75;">Freelance inquiries, collaboration, or just want to say hello — reach out through any of the channels below.</p>
+  <div class="contact-btns">
+    <a href="https://linkedin.com/in/konstantinos-lyvissianos" class="cbtn cbtn-li" target="_blank">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/clyvissianos" class="cbtn cbtn-gh" target="_blank">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+    <a href="mailto:hello@lykon.gr" class="cbtn cbtn-mail">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      hello@lykon.gr
+    </a>
+    <a href="https://play.google.com/store/apps/developer?id=Lykon" class="cbtn cbtn-play" target="_blank">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1.01-1.3 1.67-.77l14 8.5c.59.36.59 1.18 0 1.54l-14 8.5C4.01 21.8 3 21.33 3 20.5z"/></svg>
+      Play Store
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-brand">LY<span class="g">KON</span></div>
+  <div class="ft-copy">© 2026 Konstantinos Lyvissianos</div>
+</footer>
+
+<script>
+function drawMeander(canvas,stroke,bg,s){
+  const W=canvas.offsetWidth||800,H=s*3;
+  canvas.width=W;canvas.height=H;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle=stroke;ctx.lineWidth=1.2;ctx.lineCap='square';ctx.lineJoin='miter';
+  ctx.beginPath();let x=0;ctx.moveTo(x,H);
+  while(x+s*4<=W){ctx.lineTo(x,0);ctx.lineTo(x+s*4,0);ctx.lineTo(x+s*4,H-s);ctx.lineTo(x+s*3,H-s);ctx.lineTo(x+s*3,s);ctx.lineTo(x+s,s);ctx.lineTo(x+s,H);x+=s*4;ctx.lineTo(x,H);}
+  ctx.stroke();
+}
+function init(){
+  [['m1','#4B6FE8','#0A1020',4],
+   ['m2','#E8923A','#0C1428',4],
+   ['m3','#5B89C4','#0A1020',4],
+   ['m4','#2BBFAF','#0C1428',4],
+   ['m5','#D4A843','#0A1020',4]]
+  .forEach(([id,s,b,step])=>{const el=document.getElementById(id);if(el)drawMeander(el,s,b,step);});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+else setTimeout(init,80);
+window.addEventListener('resize',init);
+
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+
+const secs=document.querySelectorAll('section[id]');
+const links=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id;});
+  links.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'rgba(232,228,220,.8)':'';});
+});
+</script>
+</body>
+</html>
