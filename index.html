@@ -12,7 +12,6 @@
   --void:#0D1526;--lapis:#0B1640;--hellenic:#1E3FA8;--ion:#4B6FE8;
   --byzantine:#D4A843;--marble:#F0EDE4;--tyrian:#9B7FD4;--crt:#1D9E75;
   --mono:'Share Tech Mono',monospace;--display:'Oxanium',sans-serif;
-  /* v5: Card surfaces are MUCH lighter — visibly distinct from page bg */
   --card-a:#1C2E52;
   --card-border:#253A65;
 }
@@ -40,6 +39,9 @@ nav{
 .nav-gh:hover{border-color:rgba(75,111,232,.6);color:var(--ion)}
 .nav-cta{font-family:var(--mono);font-size:9.5px;font-weight:700;padding:6px 14px;border-radius:6px;background:var(--hellenic);color:var(--marble);text-decoration:none;transition:background .2s}
 .nav-cta:hover{background:var(--ion)}
+/* Language toggle button */
+.lang-btn{font-family:var(--mono);font-size:9.5px;padding:5px 12px;border-radius:6px;border:1px solid rgba(255,255,255,.16);color:rgba(220,225,234,.62);background:none;cursor:pointer;transition:all .2s;letter-spacing:.06em}
+.lang-btn:hover{border-color:rgba(212,168,67,.6);color:var(--byzantine)}
 @media(max-width:700px){.nav-links,.nav-gh{display:none}}
 
 /* ── HERO ── */
@@ -86,13 +88,10 @@ nav{
 .card-visual{padding:22px 22px 0;display:flex;justify-content:center;align-items:flex-end}
 .card-visual svg{filter:drop-shadow(0 8px 20px rgba(0,0,0,.55))}
 .card-body{padding:20px}
-/* v5: card-name is bright marble */
 .card-name{font-family:var(--display);font-size:15px;font-weight:700;color:#F2EEE4;margin-bottom:4px}
 .card-cat{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
-/* v5: card-desc is near-full-opacity — primary text, not secondary */
 .card-desc{font-size:12.5px;color:rgba(220,225,234,.90);line-height:1.7;margin-bottom:12px}
 .card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px}
-/* v5: tags have legible text, not ghost text */
 .tag{font-family:var(--mono);font-size:8px;padding:3px 8px;border-radius:3px;background:rgba(255,255,255,.10);color:rgba(220,225,234,.75);letter-spacing:.04em;border:1px solid rgba(255,255,255,.08)}
 .badge{display:inline-block;font-family:var(--mono);font-size:8px;padding:3px 8px;border-radius:3px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
 .card-link{font-family:var(--mono);font-size:9px;text-decoration:none;letter-spacing:.06em;opacity:.82;transition:opacity .2s}
@@ -166,14 +165,15 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
 <nav>
   <a href="#" class="nav-logo">LY<span class="g">KON</span></a>
   <ul class="nav-links">
-    <li><a href="#mobile">Mobile</a></li>
-    <li><a href="#games">Games</a></li>
-    <li><a href="#desktop">Desktop</a></li>
+    <li><a href="#mobile" data-key="nav-mobile">Mobile</a></li>
+    <li><a href="#games" data-key="nav-games">Games</a></li>
+    <li><a href="#desktop" data-key="nav-desktop">Desktop</a></li>
     <li><a href="#fullstack">Full-Stack</a></li>
   </ul>
   <div class="nav-right">
+    <button id="lang-btn" class="lang-btn" onclick="toggleLang()">ΕΛ</button>
     <a href="https://github.com/clyvissianos" class="nav-gh" target="_blank">GitHub ↗</a>
-    <a href="#contact" class="nav-cta">Contact</a>
+    <a href="#contact" class="nav-cta" data-key="nav-contact">Contact</a>
   </div>
 </nav>
 
@@ -189,9 +189,9 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
       <rect x="22" y="22" width="8" height="8" rx="1" fill="none" stroke="#E8E4DC" stroke-width="1.3"/>
     </svg>
   </div>
-  <div class="hero-eyebrow">Electrical Engineer · Software Developer</div>
+  <div class="hero-eyebrow" data-key="hero-eyebrow">Electrical Engineer · Software Developer</div>
   <h1 class="hero-name">Konstantinos Lyvissianos</h1>
-  <p class="hero-sub">Building Android tools, desktop automation platforms, Unity games, and full-stack web applications. Precise software, real problems, one developer.</p>
+  <p class="hero-sub" data-key="hero-sub">Building Android tools, desktop automation platforms, Unity games, and full-stack web applications. Precise software, real problems, one developer.</p>
   <div class="hero-tags">
     <span class="hero-tag">.NET / C#</span><span class="hero-tag">.NET MAUI</span>
     <span class="hero-tag">Unity</span><span class="hero-tag">WinForms</span>
@@ -199,7 +199,7 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
     <span class="hero-tag">SQL Server</span><span class="hero-tag">PostgreSQL</span>
   </div>
   <div class="hero-btns">
-    <a href="#mobile" class="btn-p">View work</a>
+    <a href="#mobile" class="btn-p" data-key="btn-view">View work</a>
     <a href="https://github.com/clyvissianos" class="btn-g" target="_blank">GitHub ↗</a>
   </div>
 </section>
@@ -208,34 +208,71 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
 
 <!-- MOBILE -->
 <section class="sec" id="mobile">
-  <div class="sec-eyebrow" style="color:var(--ion);">01 — Mobile</div>
-  <div class="sec-title">Android applications</div>
+  <div class="sec-eyebrow" style="color:var(--ion);" data-key="sec1-eyebrow">01 — Mobile</div>
+  <div class="sec-title" data-key="sec1-title">Android applications</div>
   <div class="grid-3">
 
     <div class="card accent-ion fi">
       <div class="card-visual">
         <svg width="110" height="210" viewBox="0 0 110 210" fill="none">
+          <!-- Phone frame -->
           <rect x="3" y="3" width="104" height="204" rx="15" fill="#0A0E1A" stroke="#4B6FE8" stroke-width="1" stroke-opacity=".4"/>
-          <rect x="9" y="18" width="92" height="170" rx="6" fill="#060810"/>
+          <!-- Screen -->
+          <rect x="9" y="18" width="92" height="170" rx="6" fill="#06080F"/>
+          <!-- Notch -->
           <circle cx="55" cy="10" r="3" fill="#040610"/>
-          <rect x="9" y="18" width="92" height="20" rx="6" fill="#0C1428"/>
-          <text x="55" y="32" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#4B6FE8" font-weight="bold" letter-spacing=".8">EE TOOLKIT</text>
-          <text x="55" y="108" text-anchor="middle" font-family="serif" font-size="52" fill="#4B6FE8" opacity=".8">Ω</text>
-          <rect x="16" y="135" width="78" height="5" rx="2" fill="#1E3FA8" opacity=".4"/>
-          <rect x="16" y="146" width="55" height="4" rx="2" fill="#1E3FA8" opacity=".25"/>
-          <rect x="16" y="156" width="68" height="4" rx="2" fill="#1E3FA8" opacity=".25"/>
-          <rect x="16" y="170" width="22" height="13" rx="3" fill="#1E3FA8" opacity=".5"/>
-          <rect x="43" y="170" width="22" height="13" rx="3" fill="#1E3FA8" opacity=".5"/>
-          <rect x="70" y="170" width="22" height="13" rx="3" fill="#1E3FA8" opacity=".5"/>
-          <rect x="40" y="200" width="28" height="2" rx="1" fill="#1E3FA8" opacity=".3"/>
+          <!-- Header bar -->
+          <rect x="9" y="18" width="92" height="22" fill="#0C1220"/>
+          <!-- Gold accent top line -->
+          <rect x="9" y="18" width="92" height="1.5" fill="#D4A843" opacity=".3"/>
+          <!-- App title in gold -->
+          <text x="55" y="32" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#D4A843" font-weight="bold" letter-spacing=".8">EE TOOLKIT</text>
+          <!-- Subtitle -->
+          <text x="55" y="46" text-anchor="middle" font-family="monospace" font-size="4.8" fill="#556080">EE calculators &amp; tools</text>
+          <!-- CALCULATORS section label -->
+          <text x="12" y="57" font-family="monospace" font-size="4.5" fill="#667AA0" letter-spacing=".4">CALCULATORS</text>
+          <!-- Ohm's Law -->
+          <rect x="11" y="60" width="41" height="23" rx="3" fill="#0D1826"/>
+          <text x="31.5" y="70" text-anchor="middle" font-family="serif" font-size="9" fill="#4B6FE8">Ω</text>
+          <text x="31.5" y="79" text-anchor="middle" font-family="monospace" font-size="4.5" fill="#7888A8">Ohm's Law</text>
+          <!-- Resistor (color band icon) -->
+          <rect x="56" y="60" width="41" height="23" rx="3" fill="#0D1826"/>
+          <rect x="72" y="67" width="2.5" height="6" rx=".8" fill="#D4A843"/>
+          <rect x="75.5" y="67" width="2.5" height="6" rx=".8" fill="#4B6FE8"/>
+          <rect x="79" y="67" width="2.5" height="6" rx=".8" fill="#E87030"/>
+          <text x="76.5" y="79" text-anchor="middle" font-family="monospace" font-size="4.5" fill="#7888A8">Resistor</text>
+          <!-- Units -->
+          <rect x="11" y="86" width="41" height="23" rx="3" fill="#0D1826"/>
+          <text x="31.5" y="96" text-anchor="middle" font-family="serif" font-size="10" fill="#4B6FE8">μ</text>
+          <text x="31.5" y="105" text-anchor="middle" font-family="monospace" font-size="4.5" fill="#7888A8">Units</text>
+          <!-- Wire (wavy line) -->
+          <rect x="56" y="86" width="41" height="23" rx="3" fill="#0D1826"/>
+          <path d="M63 96 Q67 92 71 96 Q75 100 79 96 Q83 92 87 96 Q91 100 95 96" stroke="#4B6FE8" stroke-width="1.5" fill="none"/>
+          <text x="76.5" y="105" text-anchor="middle" font-family="monospace" font-size="4.5" fill="#7888A8">Wire</text>
+          <!-- PRO TOOLS section label in gold -->
+          <text x="12" y="120" font-family="monospace" font-size="4.5" fill="#D4A843" letter-spacing=".4" opacity=".9">PRO TOOLS</text>
+          <!-- Voltage Divider -->
+          <rect x="11" y="123" width="41" height="23" rx="3" fill="#0D1826"/>
+          <text x="31.5" y="133" text-anchor="middle" font-family="serif" font-size="10" fill="#4B6FE8">÷</text>
+          <text x="31.5" y="142" text-anchor="middle" font-family="monospace" font-size="4.5" fill="#7888A8">Voltage Div.</text>
+          <!-- RC/RL (orange highlight) -->
+          <rect x="56" y="123" width="41" height="23" rx="3" fill="#1C0C02"/>
+          <rect x="56" y="123" width="41" height="23" rx="3" fill="none" stroke="#E87030" stroke-width=".7" opacity=".85"/>
+          <line x1="73" y1="133" x2="80" y2="133" stroke="#E87030" stroke-width="1.5"/>
+          <line x1="73" y1="130" x2="73" y2="136" stroke="#E87030" stroke-width="1.2"/>
+          <line x1="80" y1="130" x2="80" y2="136" stroke="#E87030" stroke-width="1.2"/>
+          <text x="76.5" y="142" text-anchor="middle" font-family="monospace" font-size="4.5" fill="#E87030">RC / RL</text>
+          <!-- Home indicator -->
+          <rect x="38" y="183" width="32" height="2" rx="1" fill="#D4A843" opacity=".22"/>
         </svg>
       </div>
       <div class="card-body">
         <div class="card-name">EE Toolkit</div>
-        <div class="card-cat" style="color:#4B6FE8;">Utility · Free + Pro</div>
-        <div class="card-desc">Electrical engineering calculators, AI resistor scanner, circuit plots, and reference tools for working engineers.</div>
+        <div class="card-cat" style="color:#4B6FE8;" data-key="eet-cat">Utility · Free + Pro</div>
+        <div class="card-desc" data-key="eet-desc">Electrical engineering calculators, AI resistor scanner, circuit plots, and reference tools for working engineers.</div>
         <div class="card-tags"><span class="tag">.NET MAUI</span><span class="tag">MVVM</span><span class="tag">OxyPlot</span><span class="tag">AI</span></div>
-        <span class="badge" style="background:rgba(75,111,232,.18);color:#6B8FF8;">● Finished · Play Store</span>
+        <span class="badge" style="background:rgba(75,111,232,.18);color:#6B8FF8;" data-key="eet-badge">● Finished · Play Store</span>
+        <a href="https://eetoolkit.lykon.gr" class="card-link" style="color:#D4A843;display:block;margin-top:8px;" target="_blank">eetoolkit.lykon.gr ↗</a>
       </div>
     </div>
 
@@ -261,11 +298,11 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
       </div>
       <div class="card-body">
         <div class="card-name">MediTrack</div>
-        <div class="card-cat" style="color:#9B7FD4;">Health · Offline-first</div>
-        <div class="card-desc">Offline medication schedules, dose tracking, doctor contacts, notifications, and long-term history — no account required.</div>
+        <div class="card-cat" style="color:#9B7FD4;" data-key="med-cat">Health · Offline-first</div>
+        <div class="card-desc" data-key="med-desc">Offline medication schedules, dose tracking, doctor contacts, notifications, and long-term history — no account required.</div>
         <div class="card-tags"><span class="tag">.NET MAUI</span><span class="tag">SQLite</span><span class="tag">Notifications</span></div>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span class="badge" style="background:rgba(155,127,212,.18);color:#B898EC;">● Finished · Public</span>
+          <span class="badge" style="background:rgba(155,127,212,.18);color:#B898EC;" data-key="med-badge">● Finished · Public</span>
           <a href="https://github.com/clyvissianos/MediTrack" class="card-link" style="color:#9B7FD4;" target="_blank">GitHub ↗</a>
         </div>
       </div>
@@ -290,10 +327,10 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
       </div>
       <div class="card-body">
         <div class="card-name">FoodDiary</div>
-        <div class="card-cat" style="color:#D4A843;">Greek · Voice input</div>
-        <div class="card-desc">Greek-language meal logging with on-device voice input, local food database, diet schedules, and weekly history.</div>
+        <div class="card-cat" style="color:#D4A843;" data-key="food-cat">Greek · Voice input</div>
+        <div class="card-desc" data-key="food-desc">Greek-language meal logging with on-device voice input, local food database, diet schedules, and weekly history.</div>
         <div class="card-tags"><span class="tag">.NET MAUI</span><span class="tag">Whisper.net</span><span class="tag">SQLite</span></div>
-        <span class="badge" style="background:rgba(212,168,67,.14);color:#E0B84A;">◐ In progress</span>
+        <span class="badge" style="background:rgba(212,168,67,.14);color:#E0B84A;" data-key="food-badge">◐ In progress</span>
       </div>
     </div>
 
@@ -305,8 +342,8 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
 <!-- GAMES -->
 <section class="sec sec-alt" id="games" style="padding-top:44px;max-width:100%;padding-left:0;padding-right:0;">
   <div style="max-width:900px;margin:0 auto;padding:0 28px;">
-  <div class="sec-eyebrow" style="color:#E8923A;">02 — Games</div>
-  <div class="sec-title">Interactive systems</div>
+  <div class="sec-eyebrow" style="color:#E8923A;" data-key="sec2-eyebrow">02 — Games</div>
+  <div class="sec-title" data-key="sec2-title">Interactive systems</div>
   <div class="game-full fi">
     <div class="game-inner">
       <div style="flex-shrink:0;">
@@ -334,12 +371,12 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
       </div>
       <div class="game-body">
         <div class="game-name" style="color:#F0A865;">Idle Empire of Bad Decisions</div>
-        <div class="game-cat" style="color:#E8923A;">Idle / Satirical · Unity · Android</div>
-        <div class="game-desc" style="color:rgba(220,225,234,.88);">A portrait-oriented satirical idle game — the player approves increasingly questionable corporate decisions, manages generators and upgrades, and converts progress into prestige. Core loop, offline earnings, tutorial system, and save/load implemented.</div>
+        <div class="game-cat" style="color:#E8923A;" data-key="game-cat">Idle / Satirical · Unity · Android</div>
+        <div class="game-desc" style="color:rgba(220,225,234,.88);" data-key="game-desc">A portrait-oriented satirical idle game — the player approves increasingly questionable corporate decisions, manages generators and upgrades, and converts progress into prestige. Core loop, offline earnings, tutorial system, and save/load implemented.</div>
         <div class="card-tags" style="margin-bottom:12px;">
           <span class="tag">Unity 6</span><span class="tag">C#</span><span class="tag">URP</span><span class="tag">DOTween</span><span class="tag">TextMeshPro</span>
         </div>
-        <span class="badge" style="background:rgba(232,146,58,.14);color:#F0A865;border:.5px solid rgba(232,146,58,.3);">◐ In progress · Playable build</span>
+        <span class="badge" style="background:rgba(232,146,58,.14);color:#F0A865;border:.5px solid rgba(232,146,58,.3);" data-key="game-badge">◐ In progress · Playable build</span>
       </div>
     </div>
   </div>
@@ -350,8 +387,8 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
 
 <!-- DESKTOP -->
 <section class="sec" id="desktop">
-  <div class="sec-eyebrow" style="color:#5B89C4;">03 — Desktop</div>
-  <div class="sec-title">Automation &amp; data tooling</div>
+  <div class="sec-eyebrow" style="color:#5B89C4;" data-key="sec3-eyebrow">03 — Desktop</div>
+  <div class="sec-title" data-key="sec3-title">Automation &amp; data tooling</div>
   <div class="grid-3">
 
     <div class="card accent-desk fi">
@@ -377,10 +414,10 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
       </div>
       <div class="card-body">
         <div class="card-name">Excel Workflow Tool</div>
-        <div class="card-cat" style="color:#5B89C4;">Business automation</div>
-        <div class="card-desc">Replaces spreadsheet macros — multi-file Excel/CSV imports, rule validation, action mapping, and standardized output workbooks.</div>
+        <div class="card-cat" style="color:#5B89C4;" data-key="xls-cat">Business automation</div>
+        <div class="card-desc" data-key="xls-desc">Replaces spreadsheet macros — multi-file Excel/CSV imports, rule validation, action mapping, and standardized output workbooks.</div>
         <div class="card-tags"><span class="tag">.NET 8</span><span class="tag">WinForms</span><span class="tag">ClosedXML</span><span class="tag">Serilog</span></div>
-        <span class="badge" style="background:rgba(91,137,196,.18);color:#7AA8DC;">● Finished · Production</span>
+        <span class="badge" style="background:rgba(91,137,196,.18);color:#7AA8DC;" data-key="xls-badge">● Finished · Production</span>
       </div>
     </div>
 
@@ -410,10 +447,10 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
       </div>
       <div class="card-body">
         <div class="card-name">Reconciliation Platform</div>
-        <div class="card-cat" style="color:#5B89C4;">Payment · Forecasting</div>
-        <div class="card-desc">Reconciles payment files against account bases, applies business rules, calculates commissions, tracks targets, generates forecasts.</div>
+        <div class="card-cat" style="color:#5B89C4;" data-key="rec-cat">Payment · Forecasting</div>
+        <div class="card-desc" data-key="rec-desc">Reconciles payment files against account bases, applies business rules, calculates commissions, tracks targets, generates forecasts.</div>
         <div class="card-tags"><span class="tag">.NET 8</span><span class="tag">WinForms</span><span class="tag">ClosedXML</span><span class="tag">JSON config</span></div>
-        <span class="badge" style="background:rgba(91,137,196,.18);color:#7AA8DC;">◐ In progress · Operational</span>
+        <span class="badge" style="background:rgba(91,137,196,.18);color:#7AA8DC;" data-key="rec-badge">◐ In progress · Operational</span>
       </div>
     </div>
 
@@ -441,10 +478,10 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
       </div>
       <div class="card-body">
         <div class="card-name">Excel Calculator Bridge</div>
-        <div class="card-cat" style="color:#5B89C4;">Excel integration</div>
-        <div class="card-desc">Desktop front end that writes structured inputs to Excel worksheets, triggers COM recalculation, and returns formatted results to the UI.</div>
+        <div class="card-cat" style="color:#5B89C4;" data-key="bridge-cat">Excel integration</div>
+        <div class="card-desc" data-key="bridge-desc">Desktop front end that writes structured inputs to Excel worksheets, triggers COM recalculation, and returns formatted results to the UI.</div>
         <div class="card-tags"><span class="tag">.NET 8</span><span class="tag">WinForms</span><span class="tag">COM Interop</span><span class="tag">ClosedXML</span></div>
-        <span class="badge" style="background:rgba(91,137,196,.18);color:#7AA8DC;">● Finished</span>
+        <span class="badge" style="background:rgba(91,137,196,.18);color:#7AA8DC;" data-key="bridge-badge">● Finished</span>
       </div>
     </div>
 
@@ -457,7 +494,7 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
 <section class="sec sec-alt" id="fullstack" style="max-width:100%;padding-left:0;padding-right:0;">
   <div style="max-width:900px;margin:0 auto;padding:0 28px;">
   <div class="sec-eyebrow" style="color:#2BBFAF;">04 — Full-Stack</div>
-  <div class="sec-title">APIs, data platforms &amp; web</div>
+  <div class="sec-title" data-key="sec4-title">APIs, data platforms &amp; web</div>
   <div class="grid-3">
 
     <div class="card accent-fs fi">
@@ -485,9 +522,9 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
       <div class="card-body">
         <div class="card-name">Analytics Dashboard</div>
         <div class="card-cat" style="color:#2BBFAF;">Full-stack · ETL · React</div>
-        <div class="card-desc">CSV/Excel ingestion, schema discovery, ETL pipeline, warehouse modeling, KPI analytics, and React dashboard with charts.</div>
+        <div class="card-desc" data-key="ana-desc">CSV/Excel ingestion, schema discovery, ETL pipeline, warehouse modeling, KPI analytics, and React dashboard with charts.</div>
         <div class="card-tags"><span class="tag">ASP.NET 8</span><span class="tag">EF Core</span><span class="tag">SQL Server</span><span class="tag">React 19</span><span class="tag">Recharts</span></div>
-        <span class="badge" style="background:rgba(43,191,175,.14);color:#3DD5C5;">◐ In progress</span>
+        <span class="badge" style="background:rgba(43,191,175,.14);color:#3DD5C5;" data-key="ana-badge">◐ In progress</span>
       </div>
     </div>
 
@@ -515,10 +552,10 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
       </div>
       <div class="card-body">
         <div class="card-name">Diatages Reminder</div>
-        <div class="card-cat" style="color:#2BBFAF;">Legal · Background jobs</div>
-        <div class="card-desc">Legal case platform with deadline tracking, automated reminder pipeline, audit history, security boundary, and E2E test coverage.</div>
+        <div class="card-cat" style="color:#2BBFAF;" data-key="dia-cat">Legal · Background jobs</div>
+        <div class="card-desc" data-key="dia-desc">Legal case platform with deadline tracking, automated reminder pipeline, audit history, security boundary, and E2E test coverage.</div>
         <div class="card-tags"><span class="tag">.NET 8 API</span><span class="tag">PostgreSQL</span><span class="tag">Hangfire</span><span class="tag">React 19</span><span class="tag">Playwright</span></div>
-        <span class="badge" style="background:rgba(43,191,175,.14);color:#3DD5C5;">● Finished · Architecture showcase</span>
+        <span class="badge" style="background:rgba(43,191,175,.14);color:#3DD5C5;" data-key="dia-badge">● Finished · Architecture showcase</span>
       </div>
     </div>
 
@@ -546,11 +583,11 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
       </div>
       <div class="card-body">
         <div class="card-name">Kanban Board</div>
-        <div class="card-cat" style="color:#2BBFAF;">Full-stack · Public</div>
-        <div class="card-desc">Boards, columns, cards, drag-and-drop reordering, and Swagger-documented REST API. Clean API-to-React integration example.</div>
+        <div class="card-cat" style="color:#2BBFAF;" data-key="kan-cat">Full-stack · Public</div>
+        <div class="card-desc" data-key="kan-desc">Boards, columns, cards, drag-and-drop reordering, and Swagger-documented REST API. Clean API-to-React integration example.</div>
         <div class="card-tags"><span class="tag">.NET 8 API</span><span class="tag">EF Core</span><span class="tag">SQL Server</span><span class="tag">React 19</span><span class="tag">TypeScript</span></div>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span class="badge" style="background:rgba(43,191,175,.14);color:#3DD5C5;">● Finished · Public</span>
+          <span class="badge" style="background:rgba(43,191,175,.14);color:#3DD5C5;" data-key="kan-badge">● Finished · Public</span>
           <a href="https://github.com/clyvissianos/Kanban-Board-App_Full-Stack" class="card-link" style="color:#2BBFAF;" target="_blank">GitHub ↗</a>
         </div>
       </div>
@@ -564,11 +601,11 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
 
 <!-- CONTACT -->
 <section class="contact-sec" id="contact">
-  <div class="sec-eyebrow" style="color:var(--byzantine);margin-bottom:8px;">05 — Contact</div>
-  <div class="sec-title" style="margin-bottom:8px;">Let's connect</div>
-  <p style="font-size:13px;color:rgba(220,225,234,.82);max-width:400px;margin:0 auto;line-height:1.75;">Freelance inquiries, collaboration, or just want to say hello — reach out through any of the channels below.</p>
+  <div class="sec-eyebrow" style="color:var(--byzantine);margin-bottom:8px;" data-key="sec5-eyebrow">05 — Contact</div>
+  <div class="sec-title" style="margin-bottom:8px;" data-key="sec5-title">Let's connect</div>
+  <p style="font-size:13px;color:rgba(220,225,234,.82);max-width:400px;margin:0 auto;line-height:1.75;" data-key="sec5-desc">Freelance inquiries, collaboration, or just want to say hello — reach out through any of the channels below.</p>
   <div class="contact-btns">
-    <a href="https://www.linkedin.com/in/konstantinos-lyvissianos" class="cbtn cbtn-li" target="_blank">
+    <a href="https://www.linkedin.com/in/konstantinos-lyvissianos-4b6405213/" class="cbtn cbtn-li" target="_blank">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 23.2 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
       LinkedIn
     </a>
@@ -593,13 +630,132 @@ footer{background:rgba(8,14,28,.95);border-top:1px solid rgba(255,255,255,.10);p
 </footer>
 
 <script>
+/* ── TRANSLATIONS ── */
+const T = {
+  en: {
+    'nav-mobile':   'Mobile',
+    'nav-games':    'Games',
+    'nav-desktop':  'Desktop',
+    'nav-contact':  'Contact',
+    'hero-eyebrow': 'Electrical Engineer · Software Developer',
+    'hero-sub':     'Building Android tools, desktop automation platforms, Unity games, and full-stack web applications. Precise software, real problems, one developer.',
+    'btn-view':     'View work',
+    'sec1-eyebrow': '01 — Mobile',
+    'sec1-title':   'Android applications',
+    'eet-cat':      'Utility · Free + Pro',
+    'eet-desc':     'Electrical engineering calculators, AI resistor scanner, circuit plots, and reference tools for working engineers.',
+    'eet-badge':    '● Finished · Play Store',
+    'med-cat':      'Health · Offline-first',
+    'med-desc':     'Offline medication schedules, dose tracking, doctor contacts, notifications, and long-term history — no account required.',
+    'med-badge':    '● Finished · Public',
+    'food-cat':     'Greek · Voice input',
+    'food-desc':    'Greek-language meal logging with on-device voice input, local food database, diet schedules, and weekly history.',
+    'food-badge':   '◐ In progress',
+    'sec2-eyebrow': '02 — Games',
+    'sec2-title':   'Interactive systems',
+    'game-cat':     'Idle / Satirical · Unity · Android',
+    'game-desc':    'A portrait-oriented satirical idle game — the player approves increasingly questionable corporate decisions, manages generators and upgrades, and converts progress into prestige. Core loop, offline earnings, tutorial system, and save/load implemented.',
+    'game-badge':   '◐ In progress · Playable build',
+    'sec3-eyebrow': '03 — Desktop',
+    'sec3-title':   'Automation &amp; data tooling',
+    'xls-cat':      'Business automation',
+    'xls-desc':     'Replaces spreadsheet macros — multi-file Excel/CSV imports, rule validation, action mapping, and standardized output workbooks.',
+    'xls-badge':    '● Finished · Production',
+    'rec-cat':      'Payment · Forecasting',
+    'rec-desc':     'Reconciles payment files against account bases, applies business rules, calculates commissions, tracks targets, generates forecasts.',
+    'rec-badge':    '◐ In progress · Operational',
+    'bridge-cat':   'Excel integration',
+    'bridge-desc':  'Desktop front end that writes structured inputs to Excel worksheets, triggers COM recalculation, and returns formatted results to the UI.',
+    'bridge-badge': '● Finished',
+    'sec4-title':   'APIs, data platforms &amp; web',
+    'ana-desc':     'CSV/Excel ingestion, schema discovery, ETL pipeline, warehouse modeling, KPI analytics, and React dashboard with charts.',
+    'ana-badge':    '◐ In progress',
+    'dia-cat':      'Legal · Background jobs',
+    'dia-desc':     'Legal case platform with deadline tracking, automated reminder pipeline, audit history, security boundary, and E2E test coverage.',
+    'dia-badge':    '● Finished · Architecture showcase',
+    'kan-cat':      'Full-stack · Public',
+    'kan-desc':     'Boards, columns, cards, drag-and-drop reordering, and Swagger-documented REST API. Clean API-to-React integration example.',
+    'kan-badge':    '● Finished · Public',
+    'sec5-eyebrow': '05 — Contact',
+    'sec5-title':   "Let's connect",
+    'sec5-desc':    'Freelance inquiries, collaboration, or just want to say hello — reach out through any of the channels below.',
+  },
+  el: {
+    'nav-mobile':   'Κινητά',
+    'nav-games':    'Παιχνίδια',
+    'nav-desktop':  'Desktop',
+    'nav-contact':  'Επικοινωνία',
+    'hero-eyebrow': 'Ηλεκτρολόγος Μηχανικός · Προγραμματιστής Λογισμικού',
+    'hero-sub':     'Ανάπτυξη εργαλείων Android, πλατφορμών αυτοματισμού, παιχνιδιών Unity και full-stack εφαρμογών. Ακριβές λογισμικό, πραγματικά προβλήματα, ένας προγραμματιστής.',
+    'btn-view':     'Δες τη δουλειά',
+    'sec1-eyebrow': '01 — Κινητά',
+    'sec1-title':   'Εφαρμογές Android',
+    'eet-cat':      'Βοηθητική · Δωρεάν + Pro',
+    'eet-desc':     'Υπολογιστές ηλεκτρολογίας, AI σαρωτής αντιστάσεων, διαγράμματα κυκλωμάτων και εργαλεία αναφοράς για μηχανικούς.',
+    'eet-badge':    '● Ολοκληρώθηκε · Play Store',
+    'med-cat':      'Υγεία · Offline',
+    'med-desc':     'Offline πρόγραμμα φαρμάκων, παρακολούθηση δόσεων, επαφές γιατρών, ειδοποιήσεις και ιστορικό — χωρίς λογαριασμό.',
+    'med-badge':    '● Ολοκληρώθηκε · Δημόσιο',
+    'food-cat':     'Ελληνικά · Φωνητική εισαγωγή',
+    'food-desc':    'Καταγραφή γευμάτων στα ελληνικά με φωνητική εισαγωγή, τοπική βάση τροφίμων, διατροφικά πλάνα και εβδομαδιαίο ιστορικό.',
+    'food-badge':   '◐ Σε εξέλιξη',
+    'sec2-eyebrow': '02 — Παιχνίδια',
+    'sec2-title':   'Διαδραστικά συστήματα',
+    'game-cat':     'Idle / Σατιρικό · Unity · Android',
+    'game-desc':    'Ένα σατιρικό idle game — ο παίκτης εγκρίνει ολοένα πιο αμφιλεγόμενες εταιρικές αποφάσεις, διαχειρίζεται generators και upgrades, και μετατρέπει την πρόοδο σε prestige. Core loop, offline earnings, tutorial και save/load υλοποιημένα.',
+    'game-badge':   '◐ Σε εξέλιξη · Παίξιμη έκδοση',
+    'sec3-eyebrow': '03 — Desktop',
+    'sec3-title':   'Αυτοματισμός &amp; εργαλεία δεδομένων',
+    'xls-cat':      'Αυτοματισμός επιχειρήσεων',
+    'xls-desc':     'Αντικαθιστά macros — εισαγωγή πολλών αρχείων Excel/CSV, επαλήθευση κανόνων, αντιστοίχιση ενεργειών και τυποποιημένα workbooks εξόδου.',
+    'xls-badge':    '● Ολοκληρώθηκε · Παραγωγή',
+    'rec-cat':      'Πληρωμές · Πρόβλεψη',
+    'rec-desc':     'Συγκρίνει αρχεία πληρωμών με βάσεις λογαριασμών, εφαρμόζει επιχειρηματικούς κανόνες, υπολογίζει προμήθειες, παρακολουθεί στόχους και παράγει προβλέψεις.',
+    'rec-badge':    '◐ Σε εξέλιξη · Λειτουργικό',
+    'bridge-cat':   'Ενσωμάτωση Excel',
+    'bridge-desc':  'Desktop front end που γράφει δομημένες εισόδους σε φύλλα Excel, ενεργοποιεί COM recalculation και επιστρέφει μορφοποιημένα αποτελέσματα στο UI.',
+    'bridge-badge': '● Ολοκληρώθηκε',
+    'sec4-title':   'APIs, πλατφόρμες δεδομένων &amp; web',
+    'ana-desc':     'Εισαγωγή CSV/Excel, ανακάλυψη σχήματος, ETL pipeline, μοντελοποίηση αποθήκης, KPI analytics και React dashboard με γραφήματα.',
+    'ana-badge':    '◐ Σε εξέλιξη',
+    'dia-cat':      'Νομικό · Background jobs',
+    'dia-desc':     'Πλατφόρμα νομικών υποθέσεων με παρακολούθηση προθεσμιών, αυτόματο pipeline υπενθυμίσεων, ιστορικό ελέγχου, ασφάλεια και E2E κάλυψη δοκιμών.',
+    'dia-badge':    '● Ολοκληρώθηκε · Αρχιτεκτονική',
+    'kan-cat':      'Full-stack · Δημόσιο',
+    'kan-desc':     'Πίνακες, στήλες, κάρτες, drag-and-drop αναδιάταξη και Swagger-documented REST API. Παράδειγμα ενσωμάτωσης API με React.',
+    'kan-badge':    '● Ολοκληρώθηκε · Δημόσιο',
+    'sec5-eyebrow': '05 — Επικοινωνία',
+    'sec5-title':   'Ας συνδεθούμε',
+    'sec5-desc':    'Freelance ερωτήσεις, συνεργασία, ή απλά ένα γεια — επικοινώνησε μέσω οποιουδήποτε από τα παρακάτω κανάλια.',
+  }
+};
+
+/* ── LANGUAGE FUNCTIONS ── */
+function setLang(lang) {
+  document.querySelectorAll('[data-key]').forEach(function(el) {
+    var key = el.getAttribute('data-key');
+    if (T[lang] && T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+  });
+  var btn = document.getElementById('lang-btn');
+  if (btn) btn.textContent = lang === 'en' ? 'ΕΛ' : 'EN';
+  document.documentElement.lang = lang === 'en' ? 'en' : 'el';
+  try { localStorage.setItem('lang', lang); } catch(e) {}
+}
+
+function toggleLang() {
+  var cur = 'en';
+  try { cur = localStorage.getItem('lang') || 'en'; } catch(e) {}
+  setLang(cur === 'en' ? 'el' : 'en');
+}
+
+/* ── MEANDER DIVIDERS ── */
 function drawMeander(canvas,stroke,bg,s){
-  const W=canvas.offsetWidth||800,H=s*3;
+  var W=canvas.offsetWidth||800,H=s*3;
   canvas.width=W;canvas.height=H;
-  const ctx=canvas.getContext('2d');
+  var ctx=canvas.getContext('2d');
   ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
   ctx.strokeStyle=stroke;ctx.lineWidth=1.2;ctx.lineCap='square';ctx.lineJoin='miter';
-  ctx.beginPath();let x=0;ctx.moveTo(x,H);
+  ctx.beginPath();var x=0;ctx.moveTo(x,H);
   while(x+s*4<=W){ctx.lineTo(x,0);ctx.lineTo(x+s*4,0);ctx.lineTo(x+s*4,H-s);ctx.lineTo(x+s*3,H-s);ctx.lineTo(x+s*3,s);ctx.lineTo(x+s,s);ctx.lineTo(x+s,H);x+=s*4;ctx.lineTo(x,H);}
   ctx.stroke();
 }
@@ -609,22 +765,31 @@ function init(){
    ['m3','#5B89C4','#0D1526',4],
    ['m4','#2BBFAF','#101E3C',4],
    ['m5','#D4A843','#0D1526',4]]
-  .forEach(([id,s,b,step])=>{const el=document.getElementById(id);if(el)drawMeander(el,s,b,step);});
+  .forEach(function(r){var el=document.getElementById(r[0]);if(el)drawMeander(el,r[1],r[2],r[3]);});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
 else setTimeout(init,80);
 window.addEventListener('resize',init);
 
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+/* ── FADE IN ── */
+var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.fi').forEach(function(el){obs.observe(el);});
 
-const secs=document.querySelectorAll('section[id]');
-const links=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',()=>{
-  let cur='';
-  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id;});
-  links.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'rgba(240,237,228,.9)':'';});
+/* ── NAV ACTIVE ── */
+var secs=document.querySelectorAll('section[id]');
+var links=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',function(){
+  var cur='';
+  secs.forEach(function(s){if(window.scrollY>=s.offsetTop-100)cur=s.id;});
+  links.forEach(function(a){a.style.color=a.getAttribute('href')==='#'+cur?'rgba(240,237,228,.9)':'';});
 });
+
+/* ── INIT LANGUAGE ── */
+(function(){
+  var saved = 'en';
+  try { saved = localStorage.getItem('lang') || 'en'; } catch(e) {}
+  setLang(saved);
+})();
 </script>
 </body>
 </html>
